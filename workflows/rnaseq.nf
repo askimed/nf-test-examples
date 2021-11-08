@@ -7,8 +7,8 @@ include { FASTQC               } from '../modules/local/fastqc'
 
 workflow RNASEQ {
   SALMON_INDEX(params.ref)
-  SALMON_ALIGN_QUANT( SALMON_INDEX.out, params.left, params.right )
-  FASTQC( SALMON_INDEX.out, params.left, params.right )
+  SALMON_ALIGN_QUANT( SALMON_INDEX.out.index, params.left, params.right )
+  FASTQC( SALMON_INDEX.out.index, params.left, params.right )
 }
 
 workflow.onComplete {

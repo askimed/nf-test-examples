@@ -7,7 +7,7 @@ process SALMON_ALIGN_QUANT {
     path left
     path right
   output:
-    path 'quant'
+    path 'quant', emit: quant
 
   """
     salmon quant -i $index -l A -1 '${left}' -2 '${right}' --validateMappings -o quant

@@ -7,7 +7,7 @@ process FASTQC {
     path left
     path right
   output:
-    path 'qc'
+    path 'qc', emit: qc
 
   """
     mkdir qc && fastqc --quiet '${params.left}' '${params.right}' --outdir qc

@@ -3,7 +3,7 @@ process SALMON_INDEX {
   input:
     path ref
   output:
-    path index
+    path index, emit: index
 
   """
     salmon index -t '${ref}' -i index
