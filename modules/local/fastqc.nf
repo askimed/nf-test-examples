@@ -10,6 +10,6 @@ process FASTQC {
     path 'qc', emit: qc
 
   """
-    mkdir qc && fastqc --quiet '${params.left}' '${params.right}' --outdir qc
+    mkdir qc && fastqc --quiet '${left}' '${right}' --outdir qc
   """
 }
