@@ -31,6 +31,8 @@ nextflow_process {
               def jsonSlurper = new JsonSlurper()
               def info = jsonSlurper.parseText(new File(index.get(0)+'/info.json').text)
               assert info.num_kmers == 375730
+              assert info.seq_length == 443050
+
             }
         }
 
