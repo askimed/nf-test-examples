@@ -4,7 +4,7 @@ nextflow_process {
     script "modules/local/salmon_index.nf"
     process "SALMON_INDEX"
 
-    test("Should run without failures") {
+    test("Test if index files are created") {
 
         when {
             params {
@@ -13,8 +13,7 @@ nextflow_process {
             }
             process {
                 """
-                // define inputs of the process here. Example:
-                // input[0] = file("test-file.txt")
+                input[0] = file("test_data/transcriptome.fa")
                 """
             }
         }
@@ -22,8 +21,10 @@ nextflow_process {
         then {
             assert process.success
             with(process.out) {
-              // Make assertions about the content and elements of output channels here. Example:
-              // assert out_channel != null
+              assert index
+              assert index.size() == 1
+              assert new File(index.get(0)).listFiles().size() == 16
+
             }
         }
 
