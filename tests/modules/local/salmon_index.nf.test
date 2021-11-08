@@ -22,10 +22,13 @@ nextflow_process {
         }
 
         then {
+            //check if test case succeeded
             assert process.success
             with(process.out) {
               assert index
+              // check if output directory has been created
               assert index.size() == 1
+              // count amount of created files
               assert new File(index.get(0)).listFiles().size() == 16
               // parse info.json file
               def jsonSlurper = new JsonSlurper()
