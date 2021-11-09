@@ -1,3 +1,5 @@
+[![CI Tests](https://github.com/askimed/nf-test-examples/actions/workflows/run-nf-test.yml/badge.svg)](https://github.com/askimed/nf-test-examples/actions/workflows/run-nf-test.yml)
+
 # Getting started with nf-test
 
 This repository helps you to get started with [nf-test](https://code.askimed.com/nf-test) using a [nextflow pipeline](https://github.com/GoekeLab/bioinformatics-workflows/tree/master/nextflow). 
