@@ -35,6 +35,8 @@ nextflow_process {
               def info = jsonSlurper.parseText(new File(index.get(0)+'/info.json').text)
               assert info.num_kmers == 375730
               assert info.seq_length == 443050
+              assert path(index.get(0)+'/info.json').md5 == "80831602e2ac825e3e63ba9df5d23505"
+
 
             }
         }
