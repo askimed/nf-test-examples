@@ -1,0 +1,23 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                ref = "$baseDir/test_data/transcriptome.fa"
+                left = "$baseDir/test_data/reads_1.fq.gz"
+                right = "$baseDir/test_data/reads_2.fq.gz"
+                outdir = "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}
