@@ -4,11 +4,12 @@ nextflow_process {
     script "modules/local/fastqc.nf"
     process "FASTQC"
 
-    test("Should run without failures") {
+    test("Should execute fastqc report") {
 
         when {
+            def testOutdir = outputDir
             params {
-               outdir = "tests/results"
+               outdir = "$testOutdir"
             }
             process {
                 """

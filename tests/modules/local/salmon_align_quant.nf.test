@@ -7,11 +7,12 @@ nextflow_process {
     script "modules/local/salmon_align_quant.nf"
     process "SALMON_ALIGN_QUANT"
 
-    test("Should run without failures") {
+    test("Should align data using salmon quant") {
 
         when {
+            def testOutdir = outputDir
             params {
-                outdir = "tests/results"
+                outdir = "$testOutdir"
             }
             process {
                 """

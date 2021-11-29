@@ -7,12 +7,10 @@ nextflow_process {
     script "modules/local/salmon_index.nf"
     process "SALMON_INDEX"
 
-    test("Test if index files are created") {
+    test("Should create all index files") {
 
         when {
             params {
-                // define parameters here. Example:
-                // outdir = "tests/results"
             }
             process {
                 """
