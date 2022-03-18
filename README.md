@@ -14,7 +14,7 @@ git clone https://github.com/askimed/nf-test-examples
 ## Run Tests
 All included tests can be executed with a single command. 
 ```
-nf-test test tests/modules/local/*.nf.test 
+nf-test test
 ```
 
 ## Run Pipeline
