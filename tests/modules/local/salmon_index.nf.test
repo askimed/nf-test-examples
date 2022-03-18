@@ -7,8 +7,6 @@ nextflow_process {
     test("Should create channel index files") {
 
         when {
-            params {
-            }
             process {
                 """
                 input[0] = file("test_data/transcriptome.fa")
@@ -22,11 +20,10 @@ nextflow_process {
             //analyze trace file
             assert process.trace.tasks().size() == 1
             with(process.out) {
-              assert index
-              // check if output directory has been created
+              // check if emitted output has been created
               assert index.size() == 1
               // count amount of created files
-              assert file(index.get(0)).listFiles().size() == 16
+              assert path(index.get(0)).list().size() == 16
               // parse info.json file
               def info = path(index.get(0)+'/info.json').json
               assert info.num_kmers == 375730

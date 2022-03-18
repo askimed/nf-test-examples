@@ -7,9 +7,8 @@ nextflow_process {
     test("Should execute fastqc report") {
 
         when {
-            def testOutdir = outputDir
             params {
-               outdir = "$testOutdir"
+               outdir = "$outputDir"
             }
             process {
                 """

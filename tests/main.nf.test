@@ -6,13 +6,11 @@ nextflow_pipeline {
     test("Should execute complete pipeline using relative paths") {
 
         when {
-            def testbaseDir = baseDir
-            def testOutdir = outputDir
             params {
-                ref = "$testbaseDir/test_data/transcriptome.fa"
-                left = "$testbaseDir/test_data/reads_1.fq.gz"
-                right = "$testbaseDir/test_data/reads_2.fq.gz"
-                outdir = "$testOutdir"
+                ref = "$baseDir/test_data/transcriptome.fa"
+                left = "$baseDir/test_data/reads_1.fq.gz"
+                right = "$baseDir/test_data/reads_2.fq.gz"
+                outdir = "$outputDir"
             }
         }
 

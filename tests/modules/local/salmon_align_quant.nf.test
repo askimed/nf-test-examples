@@ -7,9 +7,8 @@ nextflow_process {
     test("Should align data using salmon quant") {
 
         when {
-            def testOutdir = outputDir
             params {
-                outdir = "$testOutdir"
+                outdir = "$outputDir"
             }
             process {
                 """
