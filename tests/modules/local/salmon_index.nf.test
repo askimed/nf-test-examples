@@ -7,12 +7,10 @@ nextflow_process {
     script "modules/local/salmon_index.nf"
     process "SALMON_INDEX"
 
-    test("Test if index files are created") {
+    test("Should create channel index files") {
 
         when {
             params {
-                // define parameters here. Example:
-                // outdir = "tests/results"
             }
             process {
                 """
@@ -24,6 +22,8 @@ nextflow_process {
         then {
             //check if test case succeeded
             assert process.success
+            //analyze trace file
+            assert process.trace.tasks().size() == 1
             with(process.out) {
               assert index
               // check if output directory has been created
@@ -36,11 +36,7 @@ nextflow_process {
               assert info.num_kmers == 375730
               assert info.seq_length == 443050
               assert path(index.get(0)+'/info.json').md5 == "80831602e2ac825e3e63ba9df5d23505"
-
-
             }
         }
-
     }
-
 }
