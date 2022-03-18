@@ -1,6 +1,3 @@
-@Grab('org.codehaus.groovy:groovy-json:3.0.9')
-import groovy.json.JsonSlurper
-
 nextflow_process {
 
     name "Test Process SALMON_INDEX"
@@ -29,10 +26,9 @@ nextflow_process {
               // check if output directory has been created
               assert index.size() == 1
               // count amount of created files
-              assert new File(index.get(0)).listFiles().size() == 16
+              assert file(index.get(0)).listFiles().size() == 16
               // parse info.json file
-              def jsonSlurper = new JsonSlurper()
-              def info = jsonSlurper.parseText(new File(index.get(0)+'/info.json').text)
+              def info = path(index.get(0)+'/info.json').json
               assert info.num_kmers == 375730
               assert info.seq_length == 443050
               assert path(index.get(0)+'/info.json').md5 == "80831602e2ac825e3e63ba9df5d23505"
