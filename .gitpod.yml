@@ -3,8 +3,6 @@ image: nfcore/gitpod:latest
 tasks:
   - name: Install graphviz
     init: pip install graphviz
-
-tasks:
   - name: Install nf-tests
     init: wget -qO- https://code.askimed.com/install/nf-test | bash && chmod +x ./nf-test
 
