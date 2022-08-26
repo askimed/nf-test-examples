@@ -21,5 +21,10 @@ params.outdir = 'results'
 include { RNASEQ } from './workflows/rnaseq'
 
 workflow {
-    RNASEQ ()
+  RNASEQ(file(params.ref),  file(params.left), file(params.right))
+}
+
+workflow.onComplete {
+    println "Pipeline completed at: $workflow.complete"
+    println "Execution status: ${ workflow.success ? 'OK' : 'failed' }"
 }

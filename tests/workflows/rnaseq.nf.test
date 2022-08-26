@@ -1,0 +1,29 @@
+nextflow_workflow {
+
+    name "Test Workflow RNASEQ"
+    script "workflows/rnaseq.nf"
+    workflow "RNASEQ"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                // define inputs of the workflow here
+                input[0] = file("$baseDir/test_data/transcriptome.fa")
+                input[1] = file("$baseDir/test_data/reads_1.fq.gz")
+                input[2] = file("$baseDir/test_data/reads_2.fq.gz")
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}

@@ -6,12 +6,14 @@ include { FASTQC               } from '../modules/local/fastqc'
 
 
 workflow RNASEQ {
-  SALMON_INDEX(params.ref)
-  SALMON_ALIGN_QUANT( SALMON_INDEX.out.index, params.left, params.right )
-  FASTQC( SALMON_INDEX.out.index, params.left, params.right )
-}
-
-workflow.onComplete {
-    println "Pipeline completed at: $workflow.complete"
-    println "Execution status: ${ workflow.success ? 'OK' : 'failed' }"
+  take:
+    ref
+    left
+    right
+  main:
+    SALMON_INDEX(ref)
+    SALMON_ALIGN_QUANT( SALMON_INDEX.out.index, left, right )
+    FASTQC( SALMON_INDEX.out.index, left, right )
+  emit:
+    qc = FASTQC.out.qc
 }
